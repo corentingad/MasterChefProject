@@ -1,0 +1,15 @@
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\bin\Debug\test.exe.config
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\bin\Debug\test.exe
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\bin\Debug\test.pdb
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\VueForm.csprojAssemblyReference.cache
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\MainWindow.g.cs
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\App.g.cs
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\test_MarkupCompile.cache
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\test_MarkupCompile.lref
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\MainWindow.baml
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\test.g.resources
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\test.Properties.Resources.resources
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\VueForm.csproj.GenerateResource.cache
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\VueForm.csproj.CoreCompileInputs.cache
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\test.exe
+D:\EXIA\A3\PROJET 3 - Programmation Système\test\test\obj\Debug\test.pdb
