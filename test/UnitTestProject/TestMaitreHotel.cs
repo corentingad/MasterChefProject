@@ -121,7 +121,7 @@ namespace UnitTestProject
             table2.nom = "2eme table";
             table2.NbPlaces = 4;
             rang2.Tables.Add(table2);
-
+          
 
             GroupeClient gc = new GroupeClient();
 
