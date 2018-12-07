@@ -1,6 +1,0 @@
-D:\EXIA\A3\PROJET 3 - Programmation Système\test\Metier\bin\Debug\Metier.dll
-D:\EXIA\A3\PROJET 3 - Programmation Système\test\Metier\bin\Debug\Metier.pdb
-D:\EXIA\A3\PROJET 3 - Programmation Système\test\Metier\obj\Debug\Metier.csprojAssemblyReference.cache
-D:\EXIA\A3\PROJET 3 - Programmation Système\test\Metier\obj\Debug\Metier.csproj.CoreCompileInputs.cache
-D:\EXIA\A3\PROJET 3 - Programmation Système\test\Metier\obj\Debug\Metier.dll
-D:\EXIA\A3\PROJET 3 - Programmation Système\test\Metier\obj\Debug\Metier.pdb
