@@ -14,4 +14,3 @@ namespace Metier
         //GroupeClient GC = new GroupeClient();
     }
 }
-//test

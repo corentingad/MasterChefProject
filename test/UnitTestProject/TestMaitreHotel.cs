@@ -96,32 +96,32 @@ namespace UnitTestProject
         [TestMethod]
         public void TestDispatchClient1erCDRPasDispo()
         {
-            var r = new Restaurant();
-            var mh = new MaitreHotel("Maître d'Hôtel");
-            mh.Resto = r;
+            //var r = new Restaurant();
+            //var mh = new MaitreHotel("Maître d'Hôtel");
+            //mh.Resto = r;
 
-            var c = new Carre(new ChefDeRang("CDR1"));
-            var c2 = new Carre(new ChefDeRang("CDR2"));
-            //c.CDR = cdr;
-            //cdr.Carre = c;
+            //var c = new Carre(new ChefDeRang("CDR1"));
+            //var c2 = new Carre(new ChefDeRang("CDR2"));
+            ////c.CDR = cdr;
+            ////cdr.Carre = c;
 
-            r.CarresList.Add(c);
-            var rang = new Rang();
-            c.RangList.Add(rang);
-            var table = new Table();
-            table.nom = "1ere table";
-            table.NbPlaces = 3;
-            //table.GC = new GroupeClient();
-            rang.Tables.Add(table);
+            //r.CarresList.Add(c);
+            //var rang = new Rang();
+            //c.RangList.Add(rang);
+            //var table = new Table();
+            //table.nom = "1ere table";
+            //table.NbPlaces = 3;
+            ////table.GC = new GroupeClient();
+            //rang.Tables.Add(table);
 
-            r.CarresList.Add(c2);
-            var rang2 = new Rang();
-            c2.RangList.Add(rang2);
-            var table2 = new Table();
-            table2.nom = "2eme table";
-            table2.NbPlaces = 4;
-            rang2.Tables.Add(table2);
-          
+            //r.CarresList.Add(c2);
+            //var rang2 = new Rang();
+            //c2.RangList.Add(rang2);
+            //var table2 = new Table();
+            //table2.nom = "2eme table";
+            //table2.NbPlaces = 4;
+            //rang2.Tables.Add(table2);
+
 
             GroupeClient gc = new GroupeClient();
 
@@ -140,7 +140,10 @@ namespace UnitTestProject
             gc2.ClientList.Add(cl22);
 
 
-            r.MaitreHotel = mh;
+            //r.MaitreHotel = mh;
+
+            RestoBuilder rb = new RestoBuilder();
+            Restaurant r = rb.AddCarre("cdr1").AddRangInCarre().AddTableInRangDePlace(3, "1ere table").AddCarre("cdr2").AddRangInCarre().AddTableInRangDePlace(4,"2eme table").GetRestaurant();
 
             r.GroupeClientArrive(gc);
             r.GroupeClientArrive(gc2);
