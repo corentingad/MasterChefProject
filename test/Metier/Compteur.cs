@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Metier
 {
-    class Compteur
+    public class Compteur
     {
         int nbTickMax;
         int nbTickRestant;
@@ -28,6 +28,10 @@ namespace Metier
         public void reset()
         {
             nbTickRestant = nbTickMax;
+        }
+        public int tempsRestant()
+        {
+            return nbTickRestant;
         }
     }
 }

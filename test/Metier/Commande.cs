@@ -11,6 +11,7 @@ namespace Metier
 
         public List<Plat> Plats { get; set; }
         public Table Table { get; set; }
+        
 
         public Commande()
         {

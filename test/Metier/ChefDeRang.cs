@@ -92,7 +92,7 @@ namespace Metier
                 {
 
                     c.Plats.Add(new Plat());
-
+                    
                 }
 
 

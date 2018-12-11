@@ -27,9 +27,11 @@ namespace Metier
         {
             ChefDeRang cdr = new ChefDeRang(nom);
             Carre newCarre = new Carre(cdr);
+            newCarre.restaurant = this.Restaurant;
             //newCarre.CDR = cdr;
             this.Restaurant.CarresList.Add(newCarre);
             this.LastCarre = newCarre;
+
             return this;
         }
 

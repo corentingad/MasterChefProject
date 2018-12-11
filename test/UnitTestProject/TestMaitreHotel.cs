@@ -165,7 +165,7 @@ namespace UnitTestProject
         }
 
         [TestMethod]
-        public void TestRestaurant()
+        public void TestCommande()
         {
 
             GroupeClient gc = new GroupeClient();
@@ -188,7 +188,7 @@ namespace UnitTestProject
                 .GetRestaurant();
 
             r.GroupeClientArrive(gc);
-            r.TickFor(30);
+            r.TickFor(100);
 
             Assert.IsNotNull(gc.Table);
             Assert.AreEqual(0, r.FileAttente.Count);
