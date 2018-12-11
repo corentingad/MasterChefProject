@@ -6,22 +6,27 @@ using System.Threading.Tasks;
 
 namespace Metier
 {
-    public class Client : Personnel
+    public class Cuisine : Personnel
     {
-        public GroupeClient GC { get; set; }
-        //GroupeClient GC = new GroupeClient();
 
-        public Client(string nom)
-            : base(nom)
+        public Cuisine(string nom) : base(nom)
         {
+
             Nom = nom;
+
         }
+
+        public Restaurant Resto { get; set; }
 
         public override void Tick()
         {
             
         }
-    }
 
+        internal void NouvelleCommande(Commande c)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
-//test
+

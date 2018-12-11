@@ -14,6 +14,8 @@ namespace Metier
         public ChefDeRang CDR { get; set; }
         //ChefDeRang CDR = new ChefDeRang();
 
+        public Restaurant restaurant { get; set; }
+
         public Carre(ChefDeRang cdr)
         {
             RangList = new List<Rang>();

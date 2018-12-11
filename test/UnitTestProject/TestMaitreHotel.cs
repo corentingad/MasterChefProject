@@ -143,16 +143,57 @@ namespace UnitTestProject
             //r.MaitreHotel = mh;
 
             RestoBuilder rb = new RestoBuilder();
-            Restaurant r = rb.AddCarre("cdr1").AddRangInCarre().AddTableInRangDePlace(3, "1ere table").AddCarre("cdr2").AddRangInCarre().AddTableInRangDePlace(4,"2eme table").GetRestaurant();
+            Restaurant r = rb//
+                .AddCarre("cdr1")//
+                .AddRangInCarre()//
+                .AddTableInRangDePlace(3, "1ere table")//
+
+                .AddCarre("cdr2")//
+                .AddRangInCarre()//
+                .AddTableInRangDePlace(4, "2eme table")//
+
+                .GetRestaurant();
 
             r.GroupeClientArrive(gc);
             r.GroupeClientArrive(gc2);
-            r.TickFor(3);
+            r.TickFor(30);
 
             Assert.IsNotNull(gc.Table);
             Assert.AreEqual(0, r.FileAttente.Count);
             Assert.AreEqual("1ere table", gc.Table.nom);
             Assert.AreEqual("2eme table", gc2.Table.nom);
         }
+
+        [TestMethod]
+        public void TestRestaurant()
+        {
+
+            GroupeClient gc = new GroupeClient();
+
+            var c1 = new Client("Rudy");
+            var cl2 = new Client("Corentin");
+            var c3 = new Client("Cyril");
+            gc.ClientList.Add(c1);
+            gc.ClientList.Add(cl2);
+            gc.ClientList.Add(c3);
+
+            RestoBuilder rb = new RestoBuilder();
+            Restaurant r = rb//
+                
+                .AddCarre("cdr1")//
+                .AddRangInCarre()//
+                .AddTableInRangDePlace(3, "1ere table")//
+                
+
+                .GetRestaurant();
+
+            r.GroupeClientArrive(gc);
+            r.TickFor(30);
+
+            Assert.IsNotNull(gc.Table);
+            Assert.AreEqual(0, r.FileAttente.Count);
+            Assert.AreEqual("1ere table", gc.Table.nom);
+        }
+
     }
 }

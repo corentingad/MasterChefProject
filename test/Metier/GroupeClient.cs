@@ -8,13 +8,22 @@ namespace Metier
 {
     public class GroupeClient
     {
+        Random r = new Random();
+
+        public int nbTickRestantCommande { get; set; }
+
         public Table Table { get; set; }
         //public Table Table = new Table();
         public List<Client> ClientList { get; set; }
 
+        public bool CommandePrise { get; set; }
+
         public GroupeClient()
         {
             ClientList = new List<Client>();
+
+            nbTickRestantCommande = r.Next(15, 30);
+
         }
     }
 }

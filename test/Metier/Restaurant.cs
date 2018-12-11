@@ -15,6 +15,7 @@ namespace Metier
         //List<Carre> CarresList = new List<Carre>();
         public List<GroupeClient> FileAttente { get; set; }
         public MaitreHotel MaitreHotel { get; set; }
+        public Cuisine Cuisine { get; set; }
 
         public Restaurant()
         {
@@ -25,6 +26,7 @@ namespace Metier
         public void Tick()
         {
             MaitreHotel.Tick();
+            Cuisine.Tick();
             foreach (var carre in CarresList)
             {
                 carre.CDR.Tick();
