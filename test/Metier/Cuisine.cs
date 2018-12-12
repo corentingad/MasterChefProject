@@ -11,6 +11,7 @@ namespace Metier
 
         public List<Commande> CommandesEnAttente { get; set; } = new List<Commande>();
         public List<Commande> CommandesPretes { get; set; } = new List<Commande>();
+        public Plat PlatEnCours { get; set; }
 
         public Restaurant Resto { get; set; }
         Compteur TempsDePreparation = new Compteur(5);
@@ -42,35 +43,46 @@ namespace Metier
         {
             if(c != null)
             CommandesEnAttente.Add(c);
-           
+            
         }
 
         public void PreparationCommande(Commande c)
         {
 
-            foreach (var p in c.Plats)
+            if (PlatEnCours == null)
             {
-                PreparationPlat(p);
+                foreach (var p in c.Plats)
+                {
+                    if (p.PlatPret == false)
+                    {
+                        PlatEnCours = p;
+                        break;
+                    }
+                }
             }
+            else
+            {
+                Log("Plat en préparation (" + TempsDePreparation.tempsRestant() + ")");
+                TempsDePreparation.tick();
 
-            CommandesEnAttente.Remove(c);
-            CommandesPretes.Add(c);
-
-        }
-
-        public void PreparationPlat(Plat p)
-        {
-
-            Log("Plat en préparation (" + TempsDePreparation.tempsRestant() + ")");
-            TempsDePreparation.tick();
+                if (TempsDePreparation.estTermine())
+                {
+                    PlatEnCours.PlatPret = true;
+                    PlatEnCours = null;
+                    Log("Un plat est pret");
+                    TempsDePreparation.reset();
+                }
+            }
             
-            if (TempsDePreparation.estTermine())
-            {
-                Log("Un plat est pret");
-                TempsDePreparation.reset();
+            if (c.Plats.Last().PlatPret)
+            { 
+                CommandesEnAttente.Remove(c);
+                CommandesPretes.Add(c);
+                Log("Sa degage");
             }
-
         }
+
+      
     }
 }
 

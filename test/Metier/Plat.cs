@@ -11,6 +11,8 @@ namespace Metier
 
         public bool PlatPret { get; set; }
 
+        public Plat(){
 
+        }
     }
 }
