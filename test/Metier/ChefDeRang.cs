@@ -17,7 +17,7 @@ namespace Metier
         int nbTickPourPlacer = 3;
         int nbTickRestantPourPlacer = 3;
         Compteur cPrendreUneCommande = new Compteur(5);
-        
+
 
         public ChefDeRang(string nom) : base(nom)
         {
@@ -71,18 +71,17 @@ namespace Metier
             {
                 this.PrendreUneCommande();
             }
-            else 
+            else
             {
 
                 this.vérifieCommandeAPrendre();
-              
+
             }
         }
 
         private void PrendreUneCommande()
         {
-            Log("Le chef de rang prend la commande");
-            cPrendreUneCommande.tick();
+
             if (cPrendreUneCommande.estTermine())
             {
                 Log("La commande est prise");
@@ -92,18 +91,25 @@ namespace Metier
                 {
 
                     c.Plats.Add(new Plat());
-                    
-                }
 
+                }
 
                 Carre.restaurant.Cuisine.NouvelleCommande(c);
 
                 GroupeEnTrainDePrendreLaCommande.CommandePrise = true;
                 GroupeEnTrainDePrendreLaCommande = null;
                 cPrendreUneCommande.reset();
-
-                
             }
+
+            else
+            {
+                Log(String.Format("Je prends la commande du groupe à la {0} ({1})",
+                    GroupeEnTrainDePrendreLaCommande.Table.nom,
+                    cPrendreUneCommande.nbTickRestant));
+
+            }
+
+            cPrendreUneCommande.tick();
         }
 
         private void accompagneGroupe()
@@ -113,7 +119,7 @@ namespace Metier
 
             if (nbTickRestantPourPlacer == 0)
             {
-                
+
                 Log("Je les place sur la table " + meilleureTable.nom + " !");
                 groupeAccompagne.Table = meilleureTable;
                 meilleureTable.GC = groupeAccompagne;
@@ -125,28 +131,28 @@ namespace Metier
 
         private void vérifieCommandeAPrendre()
         {
-            
+
             foreach (var rang in Carre.RangList)
             {
                 foreach (var table in rang.Tables)
                 {
-                    if(table.GC == null)
+                    if (table.GC == null)
                         continue;
 
                     if (table.GC.CommandePrise)
                         continue;
+
                     Log("Les clients sont en train de réfléchir à leur commande  (" + table.GC.nbTickRestantCommande + ")");
                     table.GC.nbTickRestantCommande--;
-                    if(table.GC.nbTickRestantCommande == 0)
+                    if (table.GC.nbTickRestantCommande == 0)
                     {
                         GroupeEnTrainDePrendreLaCommande = table.GC;
                         break;
                     }
 
-                }    
+                }
             }
 
         }
-        //Carre Carre = new Carre();
     }
 }
