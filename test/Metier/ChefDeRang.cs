@@ -16,7 +16,7 @@ namespace Metier
         GroupeClient groupeAccompagne;
         int nbTickPourPlacer = 3;
         int nbTickRestantPourPlacer = 3;
-        Compteur cPrendreUneCommande = new Compteur(5);
+        Compteur cPrendreUneCommande = new Compteur(5,5);
 
 
         public ChefDeRang(string nom) : base(nom)

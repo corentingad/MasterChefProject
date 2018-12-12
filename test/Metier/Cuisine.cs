@@ -14,7 +14,7 @@ namespace Metier
         public Plat PlatEnCours { get; set; }
 
         public Restaurant Resto { get; set; }
-        Compteur TempsDePreparation = new Compteur(5);
+        Compteur TempsDePreparation = new Compteur(5,10);
 
         public Cuisine(string nom) : base(nom)
         {
@@ -62,6 +62,7 @@ namespace Metier
             }
             else
             {
+
                 Log("Plat en préparation (" + TempsDePreparation.tempsRestant() + ")");
                 TempsDePreparation.tick();
 

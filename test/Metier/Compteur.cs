@@ -8,12 +8,16 @@ namespace Metier
 {
     public class Compteur
     {
-        int nbTickMax;
-        int nbTickRestant;
-        public Compteur(int nbTickMax)
+        public int nbTickMax;
+        public int nbTickMin;
+        public int nbTickRestant;
+        Random r = new Random();
+
+        public Compteur(int nbTickMin, int nbTickMax)
         {
             this.nbTickMax = nbTickMax;
-            this.nbTickRestant = nbTickMax;
+            this.nbTickMin = nbTickMin;
+            this.nbTickRestant = r.Next(nbTickMin,nbTickMax);
         }
 
         public bool estTermine()
@@ -27,7 +31,7 @@ namespace Metier
         }
         public void reset()
         {
-            nbTickRestant = nbTickMax;
+            nbTickRestant = r.Next(nbTickMin, nbTickMax);
         }
         public int tempsRestant()
         {
