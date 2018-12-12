@@ -36,7 +36,10 @@ namespace Metier
         public void TickFor(int x)
         {
             for (int i = 0; i < x; i++)
+            {
+                Console.WriteLine("## " + i + " ##");
                 Tick();
+            }
         }
 
         public void GroupeClientArrive(GroupeClient groupeClient)

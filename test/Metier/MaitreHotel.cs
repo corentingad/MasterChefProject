@@ -19,7 +19,11 @@ namespace Metier
 
         public override void Tick()
         {
-            Log("J'ai " + Resto.FileAttente.Count + " groupes de clients en attente");
+            if (Resto.FileAttente.Count != 0)
+            {
+                Log("J'ai " + Resto.FileAttente.Count + " groupes de clients en attente");
+            }
+
             List<GroupeClient> aSuppr = new List<GroupeClient>();
             foreach (var groupeClient in Resto.FileAttente)
             {
