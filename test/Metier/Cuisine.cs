@@ -39,14 +39,16 @@ namespace Metier
                 {
                     Log("serveur 1 dispo");
 
-                    CommandesPretes[0].Table.Carre.Serveur1.ServirCommande(CommandesPretes[0]);
+                    CommandesPretes[0].Table.Carre.Serveur1.DonneCommande(CommandesPretes[0]);
+
                     CommandesPretes.RemoveAt(0);
                 }
                 else if (CommandesPretes[0].Table.Carre.Serveur2.EstDisponible())
                 {
                     Log("serveur 2 dispo");
 
-                    CommandesPretes[0].Table.Carre.Serveur2.ServirCommande(CommandesPretes[0]);
+                    CommandesPretes[0].Table.Carre.Serveur2.DonneCommande(CommandesPretes[0]);
+
                     CommandesPretes.RemoveAt(0);
                 }
                 else
@@ -102,7 +104,7 @@ namespace Metier
             {
                 CommandesEnAttente.Remove(c);
                 CommandesPretes.Add(c);
-                Log("Ca degage");
+                Log("La commande est prete !");
             }
         }
 

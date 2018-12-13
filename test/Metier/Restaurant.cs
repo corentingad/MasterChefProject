@@ -30,6 +30,8 @@ namespace Metier
             foreach (var carre in CarresList)
             {
                 carre.CDR.Tick();
+                carre.Serveur1.Tick();
+                carre.Serveur2.Tick();
             }
         }
 

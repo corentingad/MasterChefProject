@@ -9,10 +9,11 @@ namespace Metier
     public class Serveur : Personnel
     {
         public Carre Carre { get; set; }
-
         public Commande CommandeAServir { get; set; }
+        public Compteur CompteurService { get; set; } = new Compteur(5, 5);
 
-        public Serveur(string nom) :base(nom)
+
+        public Serveur(string nom) : base(nom)
         {
         }
 
@@ -25,22 +26,36 @@ namespace Metier
             return true;
         }
 
-        public void ServirCommande(Commande commande)
+        public void DonneCommande(Commande commande)
         {
             CommandeAServir = commande;
-            Log("Je sers la commande de la " + CommandeAServir.Table.nom);
-            CommandeAServir.Table.GC.EstServi = true;
+        }
 
-            CommandeAServir = null;
-            
+        public void ServirCommande()
+        {
+            CompteurService.tick();
+            Log("Le serveur se déplace vers la table (" + CompteurService.tempsRestant() + ")");
+            if (CompteurService.estTermine())
+            {
+                Log("Je sers la commande de la " + CommandeAServir.Table.nom);
+                CommandeAServir.Table.GC.EstServi = true;
+
+                CommandeAServir = null;
+                CompteurService.reset();
+            }
         }
 
         public override void Tick()
         {
-            if (EstDisponible())
+            if (CommandeAServir != null)
             {
-                //ServirCommande();
+                ServirCommande();
             }
+            else
+            {
+                //Log("Le serveur n'a rien à faire");
+            }
+
         }
     }
 }
