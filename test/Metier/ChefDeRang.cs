@@ -87,6 +87,9 @@ namespace Metier
                 Log("La commande est prise");
                 Commande c = new Commande();
                 c.Table = GroupeEnTrainDePrendreLaCommande.Table;
+                c.GroupeClient = GroupeEnTrainDePrendreLaCommande;
+
+                GroupeEnTrainDePrendreLaCommande.Commande = c;
                 foreach (var client in GroupeEnTrainDePrendreLaCommande.ClientList)
                 {
 

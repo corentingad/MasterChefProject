@@ -35,7 +35,7 @@ namespace Metier
         {
             CompteurService.tick();
             Log("Le serveur se déplace vers la table (" + CompteurService.tempsRestant() + ")");
-            if (CompteurService.estTermine())
+            if (CompteurService.estTermine()) 
             {
                 Log("Je sers la commande de la " + CommandeAServir.Table.nom);
                 CommandeAServir.Table.GC.EstServi = true;

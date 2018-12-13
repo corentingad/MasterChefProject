@@ -14,6 +14,7 @@ namespace Metier
         public List<Carre> CarresList { get; set; }
         //List<Carre> CarresList = new List<Carre>();
         public List<GroupeClient> FileAttente { get; set; }
+        public List<GroupeClient> GroupesPresentsDansLeResto { get; set; } = new List<GroupeClient>();
         public MaitreHotel MaitreHotel { get; set; }
         public Cuisine Cuisine { get; set; }
 
@@ -32,6 +33,10 @@ namespace Metier
                 carre.CDR.Tick();
                 carre.Serveur1.Tick();
                 carre.Serveur2.Tick();
+                foreach (var groupe in GroupesPresentsDansLeResto)
+                {
+                    groupe.Tick();
+                }
             }
         }
 

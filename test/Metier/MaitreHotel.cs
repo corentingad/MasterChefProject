@@ -25,6 +25,7 @@ namespace Metier
             }
 
             List<GroupeClient> aSuppr = new List<GroupeClient>();
+
             foreach (var groupeClient in Resto.FileAttente)
             {
                 foreach (var carre in Resto.CarresList)
@@ -33,6 +34,7 @@ namespace Metier
                     {
                         carre.CDR.Place(groupeClient);
                         aSuppr.Add(groupeClient);
+                        Resto.GroupesPresentsDansLeResto.Add(groupeClient);
                         break;
                     }
                 }
