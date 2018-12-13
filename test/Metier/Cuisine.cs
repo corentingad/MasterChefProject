@@ -14,7 +14,7 @@ namespace Metier
         public Plat PlatEnCours { get; set; }
 
         public Restaurant Resto { get; set; }
-        Compteur TempsDePreparation = new Compteur(5,10);
+        Compteur TempsDePreparation = new Compteur(5, 10);
 
         public Cuisine(string nom) : base(nom)
         {
@@ -31,9 +31,32 @@ namespace Metier
                 this.PreparationCommande(CommandesEnAttente[0]);
 
             }
+            else if (CommandesPretes.Count != 0)
+            {
+                var temp = CommandesPretes[0];
+
+                if (CommandesPretes[0].Table.Carre.Serveur1.EstDisponible())
+                {
+                    Log("serveur 1 dispo");
+
+                    CommandesPretes[0].Table.Carre.Serveur1.ServirCommande(CommandesPretes[0]);
+                    CommandesPretes.RemoveAt(0);
+                }
+                else if (CommandesPretes[0].Table.Carre.Serveur2.EstDisponible())
+                {
+                    Log("serveur 2 dispo");
+
+                    CommandesPretes[0].Table.Carre.Serveur2.ServirCommande(CommandesPretes[0]);
+                    CommandesPretes.RemoveAt(0);
+                }
+                else
+                {
+                    Log("Aucun serveur dispo");
+                }
+            }
             else
             {
-                Log("Nous n'avons rien a faire");
+                //Log("Nous n'avons rien a faire");
             }
 
 
@@ -41,9 +64,9 @@ namespace Metier
 
         internal void NouvelleCommande(Commande c)
         {
-            if(c != null)
-            CommandesEnAttente.Add(c);
-            
+            if (c != null)
+                CommandesEnAttente.Add(c);
+
         }
 
         public void PreparationCommande(Commande c)
@@ -74,16 +97,16 @@ namespace Metier
                     TempsDePreparation.reset();
                 }
             }
-            
+
             if (c.Plats.Last().PlatPret)
-            { 
+            {
                 CommandesEnAttente.Remove(c);
                 CommandesPretes.Add(c);
-                Log("Sa degage");
+                Log("Ca degage");
             }
         }
 
-      
+
     }
 }
 

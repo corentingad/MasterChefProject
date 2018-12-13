@@ -17,6 +17,7 @@ namespace Metier
         public List<Client> ClientList { get; set; }
 
         public bool CommandePrise { get; set; }
+        public bool EstServi { get; set; }
 
         public GroupeClient()
         {

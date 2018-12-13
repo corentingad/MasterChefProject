@@ -26,7 +26,9 @@ namespace Metier
         public RestoBuilder AddCarre(string nom)
         {
             ChefDeRang cdr = new ChefDeRang(nom);
-            Carre newCarre = new Carre(cdr);
+            Carre newCarre = new Carre(cdr, new Serveur("Serveur1"), new Serveur("Serveur2"));
+
+
             newCarre.restaurant = this.Restaurant;
             //newCarre.CDR = cdr;
             this.Restaurant.CarresList.Add(newCarre);
@@ -34,6 +36,7 @@ namespace Metier
 
             return this;
         }
+
 
         //Ajoute un rang dans le carre spécifier 
         public RestoBuilder AddRangInCarreDonnee(int carre)
@@ -56,7 +59,8 @@ namespace Metier
         //Ajoute une table de "place" places dans le rang du carre spécifier
         public RestoBuilder AddTableInRangInCarreDonneDePlace(int rang, int carre, int place)
         {
-            this.Restaurant.CarresList[carre].RangList[rang].Tables.Add(new Table());
+            var newTable = new Table();
+            this.Restaurant.CarresList[carre].RangList[rang].Tables.Add(newTable);
             return this;
         }
 
@@ -67,6 +71,18 @@ namespace Metier
             table.NbPlaces = place;
             table.nom = nom;
             this.LastRang.Tables.Add(table);
+            return this;
+        }
+
+        public RestoBuilder AddTable(int nbDePlaces, string nom, int rang, int carre)
+        {
+            Table newTable = new Table();
+            newTable.NbPlaces = nbDePlaces;
+            newTable.nom = nom;
+            newTable.Carre = Restaurant.CarresList[carre];
+            this.LastRang.Tables.Add(newTable);
+
+
             return this;
         }
 

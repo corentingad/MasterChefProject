@@ -10,7 +10,13 @@ namespace Metier
     {
         public string nom { get; set; }
         public int NbPlaces { get; set; }
-        public GroupeClient GC { get; set; }     
+        public GroupeClient GC { get; set; }  
+        public Carre Carre { get; set; }
         //GroupeClient GC = new GroupeClient();
+
+        public Table()
+        {
+        }
+        
     }
 }
