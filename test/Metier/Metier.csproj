@@ -55,6 +55,7 @@
     <Compile Include="Restaurant.cs" />
     <Compile Include="RestoBuilder.cs" />
     <Compile Include="Serveur.cs" />
+    <Compile Include="Stats.cs" />
     <Compile Include="Table.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

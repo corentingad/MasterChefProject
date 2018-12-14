@@ -10,11 +10,12 @@ namespace Metier
     public class Restaurant
     {
 
-
         public List<Carre> CarresList { get; set; }
         //List<Carre> CarresList = new List<Carre>();
         public List<GroupeClient> FileAttente { get; set; }
         public List<GroupeClient> GroupesPresentsDansLeResto { get; set; } = new List<GroupeClient>();
+        public List<GroupeClient> GroupesASupprDuResto { get; set; } = new List<GroupeClient>();
+        //public List<GroupeClient> GroupesQuiVontPayer { get; set; } = new List<GroupeClient>();
         public MaitreHotel MaitreHotel { get; set; }
         public Cuisine Cuisine { get; set; }
 
@@ -37,6 +38,14 @@ namespace Metier
                 {
                     groupe.Tick();
                 }
+                //foreach (var groupe in GroupesQuiVontPayer)
+                //{
+                //    groupe.Tick();
+                //}
+            }
+            foreach (var groupe in GroupesASupprDuResto)
+            {
+                this.GroupesPresentsDansLeResto.Remove(groupe);
             }
         }
 

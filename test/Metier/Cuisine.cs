@@ -25,13 +25,8 @@ namespace Metier
 
         public override void Tick()
         {
-            if (CommandesEnAttente.Count != 0)
-            {
-
-                this.PreparationCommande(CommandesEnAttente[0]);
-
-            }
-            else if (CommandesPretes.Count != 0)
+            
+            if (CommandesPretes.Count != 0)
             {
                 var temp = CommandesPretes[0];
 
@@ -55,6 +50,12 @@ namespace Metier
                 {
                     Log("Aucun serveur dispo");
                 }
+            }
+            else if (CommandesEnAttente.Count != 0)
+            {
+
+                this.PreparationCommande(CommandesEnAttente[0]);
+
             }
             else
             {

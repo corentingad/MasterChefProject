@@ -11,7 +11,8 @@ namespace Metier
         public Carre Carre { get; set; }
         public Commande CommandeAServir { get; set; }
         public Compteur CompteurService { get; set; } = new Compteur(5, 5);
-
+        public Compteur CompteurDebarasser { get; set; } = new Compteur(4, 8);
+        public bool JeDebarasse { get; set; }
 
         public Serveur(string nom) : base(nom)
         {
@@ -19,7 +20,7 @@ namespace Metier
 
         public bool EstDisponible()
         {
-            if (CommandeAServir != null)
+            if (CommandeAServir != null || JeDebarasse)
             {
                 return false;
             }
@@ -35,7 +36,7 @@ namespace Metier
         {
             CompteurService.tick();
             Log("Le serveur se déplace vers la table (" + CompteurService.tempsRestant() + ")");
-            if (CompteurService.estTermine()) 
+            if (CompteurService.estTermine())
             {
                 Log("Je sers la commande de la " + CommandeAServir.Table.nom);
                 CommandeAServir.Table.GC.EstServi = true;
@@ -53,9 +54,39 @@ namespace Metier
             }
             else
             {
-                //Log("Le serveur n'a rien à faire");
+                foreach (var rang in Carre.RangList)
+                {
+                    foreach (var table in rang.Tables)
+                    {
+                        if (table.GC == null)
+                        {
+                            if((table.Debarasseur == null || table.Debarasseur == this) && table.Debarassee == false)
+                            {
+                                table.Debarasseur = this;
+                                JeDebarasse = true;
+                                Debarasser(table);
+                            }
+                        }
+                    }
+                }
             }
 
+        }
+
+        private void Debarasser(Table table)
+        {
+
+            CompteurDebarasser.tick();
+            Log("Je débarasse la " + table.nom + " (" + CompteurDebarasser.tempsRestant() + ")");
+            if (CompteurDebarasser.estTermine())
+            {
+                Log("La " + table.nom + " est débarassée et prête à recevoir de nouveaux clients.");
+                CompteurDebarasser.reset();
+
+                table.Debarasseur = null;
+                table.Debarassee = true;
+                JeDebarasse = false;
+            }
         }
     }
 }

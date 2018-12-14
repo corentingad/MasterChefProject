@@ -37,6 +37,8 @@ namespace Metier
             {
                 foreach (var table in rang.Tables)
                 {
+                    if (!table.Debarassee)
+                        continue;
                     if (table.NbPlaces < groupeClient.ClientList.Count)
                         continue;
                     if (table.GC != null)
@@ -60,22 +62,14 @@ namespace Metier
 
         public override void Tick()
         {
-
-            if (groupeAccompagne != null)
-            {
-
+            this.verifieCommandeAPrendre();
+            if (groupeAccompagne != null) { 
                 this.accompagneGroupe();
-
-            }
-            else if (GroupeEnTrainDePrendreLaCommande != null)
-            {
-                this.PrendreUneCommande();
             }
             else
             {
-
-                this.vérifieCommandeAPrendre();
-
+                if (GroupeEnTrainDePrendreLaCommande != null)
+                    this.PrendreUneCommande();
             }
         }
 
@@ -126,13 +120,15 @@ namespace Metier
                 Log("Je les place sur la table " + meilleureTable.nom + " !");
                 groupeAccompagne.Table = meilleureTable;
                 meilleureTable.GC = groupeAccompagne;
+                //meilleureTable.Debarassee = false;
+                groupeAccompagne.Table.Debarassee = false;
                 meilleureTable = null;
                 nbTickRestantPourPlacer = nbTickPourPlacer;
                 groupeAccompagne = null;
             }
         }
 
-        private void vérifieCommandeAPrendre()
+        private void verifieCommandeAPrendre()
         {
 
             foreach (var rang in Carre.RangList)
@@ -146,10 +142,14 @@ namespace Metier
                         continue;
 
                     Log("Les clients sont en train de réfléchir à leur commande  (" + table.GC.nbTickRestantCommande + ")");
-                    table.GC.nbTickRestantCommande--;
+                    if (table.GC.nbTickRestantCommande > 0)
+                        table.GC.nbTickRestantCommande--;
                     if (table.GC.nbTickRestantCommande == 0)
                     {
+                        if (GroupeEnTrainDePrendreLaCommande != null)
+                            continue;
                         GroupeEnTrainDePrendreLaCommande = table.GC;
+                        GroupeEnTrainDePrendreLaCommande.CommandePrise = true;
                         break;
                     }
 

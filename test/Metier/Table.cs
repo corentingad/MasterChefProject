@@ -12,6 +12,9 @@ namespace Metier
         public int NbPlaces { get; set; }
         public GroupeClient GC { get; set; }  
         public Carre Carre { get; set; }
+        public Serveur Debarasseur { get; set; }
+        public bool Debarassee { get; set; } = true;
+
         //GroupeClient GC = new GroupeClient();
 
         public Table()

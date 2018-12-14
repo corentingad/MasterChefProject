@@ -16,6 +16,7 @@ namespace Metier
 
         public Commande Commande { get; set; }
         public Compteur CompteurManger { get; set; } = new Compteur(25, 30);
+        public Compteur CompteurPayer { get; set; } = new Compteur(5, 8);
 
         public bool CommandePrise { get; set; }
         public bool EstServi { get; set; }
@@ -35,6 +36,30 @@ namespace Metier
             {
                 Manger();
             }
+            else if (RepasFini == true)
+            {
+                EstServi = false;
+                Paiement(Commande);
+
+            }
+        }
+
+        private void Paiement(Commande commande)
+        {
+
+            CompteurPayer.tick();
+            Log("Nous allons payer (" + CompteurPayer.tempsRestant() + ")");
+            if (CompteurPayer.estTermine())
+            {
+                Log(String.Format("Les clients de la {0} ont payé pour leur repas et s'en vont gaiement.", Table.nom));
+
+                Table.GC = null;
+                this.Table.Carre.restaurant.GroupesASupprDuResto.Add(this);
+                this.Table = null;
+
+
+            }
+
         }
 
         private void Manger()

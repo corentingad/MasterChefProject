@@ -9,7 +9,7 @@ namespace Metier
     public abstract class Personnel
     {
         public string Nom { get; set; }
-
+        public Stats Stats { get; set; } = new Stats();
 
         public Personnel(string nom)
         {
